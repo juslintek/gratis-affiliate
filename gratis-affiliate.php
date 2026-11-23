@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Gratis Affiliate
  * Plugin URI: https://github.com/juslintek/gratis-affiliate
- * Description: Affiliate program management: referral tracking, commissions, and payouts. Replaces AffiliateWP ($299/yr).
+ * Description: Affiliate program management: referral tracking, commissions, and payouts.
  * Version: 1.0.0
  * Requires at least: 6.0
  * Requires PHP: 8.1
