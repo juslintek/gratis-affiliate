@@ -93,8 +93,9 @@ final class Settings {
             'post_type'   => 'gratis_referral',
             // phpcs:ignore WordPress.WP.PostsPerPage.posts_per_page_numberposts -- bounded payout batch.
             'numberposts' => 500,
-            // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key, WordPress.DB.SlowDBQuery.slow_db_query_meta_value -- payout batch over pending referrals.
+            // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key -- payout batch over pending referrals.
             'meta_key'    => '_status',
+            // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value -- payout batch over pending referrals.
             'meta_value'  => 'pending',
         ]);
         $count = 0;

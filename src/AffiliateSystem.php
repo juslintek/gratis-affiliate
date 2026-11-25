@@ -46,8 +46,9 @@ final class AffiliateSystem {
         $found = get_posts([
             'post_type'   => 'gratis_affiliate',
             'numberposts' => 1,
-            // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key, WordPress.DB.SlowDBQuery.slow_db_query_meta_value -- ref-code lookup is the intended query.
+            // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key -- ref-code lookup is the intended query.
             'meta_key'    => '_ref_code',
+            // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value -- ref-code lookup is the intended query.
             'meta_value'  => $code,
         ]);
         return $found ? $found[0] : null;
@@ -62,7 +63,13 @@ final class AffiliateSystem {
         }
         if (self::findByRefCode($ref) instanceof \WP_Post) {
             $days = Settings::cookieDays();
-            setcookie(self::COOKIE, $ref, time() + ($days * DAY_IN_SECONDS), defined('COOKIEPATH') ? COOKIEPATH : '/');
+            setcookie(self::COOKIE, $ref, [
+                'expires'  => time() + ($days * DAY_IN_SECONDS),
+                'path'     => defined('COOKIEPATH') ? COOKIEPATH : '/',
+                'secure'   => is_ssl(),
+                'httponly' => true,
+                'samesite' => 'Lax',
+            ]);
         }
     }
 
